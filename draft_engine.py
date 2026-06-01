@@ -99,4 +99,4 @@ def get_recommendations(
         reverse=True
     )
 
-   
+    return sorted_results[:5]
