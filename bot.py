@@ -176,10 +176,11 @@ async def button_handler(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
             if enemy in enemies:
 
-            await query.edit_message_text(
-                f"⚠️ {enemy} уже добавлен."
-            )
-            return
+                await query.edit_message_text(
+                    f"⚠️ {enemy} уже добавлен."
+                )
+
+                return
 
         if len(enemies) >= 3:
 
