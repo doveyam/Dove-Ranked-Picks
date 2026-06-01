@@ -76,13 +76,18 @@ async def button_handler(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
         for map_name in maps:
 
-            keyboard.append([
-                InlineKeyboardButton(
-                    map_name,
-                    callback_data=f"map:{mode_id}:{map_name}"
-                )
-            ])
+            display_name = MAP_TRANSLATIONS.get(
+        map_name,
+        map_name
+    )
 
+            keyboard.append([
+                  
+                InlineKeyboardButton(
+            display_name,
+            callback_data=f"map:{mode_id}:{map_name}"
+        )
+    ])
         keyboard.append([
             InlineKeyboardButton(
                 "🏠 Главное меню",
