@@ -166,31 +166,29 @@ async def button_handler(update: Update, context: ContextTypes.DEFAULT_TYPE):
             reply_markup=InlineKeyboardMarkup(keyboard)
         )
 
-    elif data.startswith("enemy:"):
+elif data.startswith("enemy:"):
 
-enemy = data.replace("enemy:", "")
+    enemy = data.replace("enemy:", "")
 
-if user_id in USER_DRAFTS:
+    if user_id in USER_DRAFTS:
 
-    enemies = USER_DRAFTS[user_id]["enemies"]
+        enemies = USER_DRAFTS[user_id]["enemies"]
 
-    if enemy in enemies:
+        if enemy in enemies:
 
-        await query.edit_message_text(
-            f"⚠️ {enemy} уже добавлен."
-        )
+            await query.edit_message_text(
+                f"⚠️ {enemy} уже добавлен."
+            )
+            return
 
-        return
+        if len(enemies) >= 3:
 
-    if len(enemies) >= 3:
+            await query.edit_message_text(
+                "❌ Можно выбрать максимум 3 врага."
+            )
+            return
 
-        await query.edit_message_text(
-            "❌ Можно выбрать максимум 3 врага."
-        )
-
-        return
-
-    enemies.append(enemy)
+        enemies.append(enemy)
 
         await query.edit_message_text(
             f"✅ Добавлен: {enemy}\n\nМожно добавить еще врагов.",
