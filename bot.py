@@ -250,7 +250,68 @@ async def button_handler(update: Update, context: ContextTypes.DEFAULT_TYPE):
                 ]
             ])
         )
+        
+    elif data == "remove_enemy":
 
+        draft = USER_DRAFTS.get(user_id)
+
+        if not draft:
+            return
+
+        enemies = draft["enemies"]
+
+        if len(enemies) == 0:
+
+            await query.edit_message_text(
+                "❌ Список врагов пуст."
+            )
+
+            return
+
+        keyboard = []
+
+        for enemy in enemies:
+
+            keyboard.append([
+                InlineKeyboardButton(
+                    enemy,
+                    callback_data=f"delete_enemy:{enemy}"
+                )
+            ])
+
+        keyboard.append([
+            InlineKeyboardButton(
+                "⬅️ Назад",
+                callback_data="back_to_draft"
+            )
+        ])
+
+        await query.edit_message_text(
+            "➖ Выберите врага для удаления:",
+            reply_markup=InlineKeyboardMarkup(keyboard)
+        )
+
+    elif data.startswith("delete_enemy:"):
+
+        enemy = data.replace("delete_enemy:", "")
+
+        draft = USER_DRAFTS.get(user_id)
+
+        if draft and enemy in draft["enemies"]:
+            draft["enemies"].remove(enemy)
+
+        await query.edit_message_text(
+            f"✅ Удален: {enemy}",
+            reply_markup=InlineKeyboardMarkup([
+                [
+                    InlineKeyboardButton(
+                        "⬅️ Назад",
+                        callback_data="back_to_draft"
+                    )
+                ]
+            ])
+        )
+        
     elif data == "recommend":
 
         draft = USER_DRAFTS.get(user_id)
