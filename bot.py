@@ -55,6 +55,13 @@ async def button_handler(update: Update, context: ContextTypes.DEFAULT_TYPE):
                 )
             ])
 
+        keyboard.append([
+            InlineKeyboardButton(
+                "🏠 Главное меню",
+                callback_data="home"
+            )
+        ])
+
         await query.edit_message_text(
             f"📍 {MODES[mode_id]['name']}\n\nВыберите карту:",
             reply_markup=InlineKeyboardMarkup(keyboard)
@@ -80,13 +87,52 @@ async def button_handler(update: Update, context: ContextTypes.DEFAULT_TYPE):
                 + "\n".join([f"• {x}" for x in m["last_picks"]])
             )
 
-            await query.edit_message_text(text)
+            keyboard = [
+                [
+                    InlineKeyboardButton(
+                        "🏠 Главное меню",
+                        callback_data="home"
+                    )
+                ]
+            ]
+
+            await query.edit_message_text(
+                text,
+                reply_markup=InlineKeyboardMarkup(keyboard)
+            )
 
         else:
 
+            keyboard = [
+                [
+                    InlineKeyboardButton(
+                        "🏠 Главное меню",
+                        callback_data="home"
+                    )
+                ]
+            ]
+
             await query.edit_message_text(
-                f"🗺 Карта: {map_name}\n\nНет данных."
+                f"🗺 Карта: {map_name}\n\nНет данных.",
+                reply_markup=InlineKeyboardMarkup(keyboard)
             )
+
+    elif data == "home":
+
+        keyboard = []
+
+        for mode_id, mode_data in MODES.items():
+            keyboard.append([
+                InlineKeyboardButton(
+                    mode_data["name"],
+                    callback_data=f"mode:{mode_id}"
+                )
+            ])
+
+        await query.edit_message_text(
+            "🏆 Dove Ranked Picks\n\nВыберите режим:",
+            reply_markup=InlineKeyboardMarkup(keyboard)
+        )
 
 
 def main():
