@@ -63,7 +63,7 @@ async def button_handler(update: Update, context: ContextTypes.DEFAULT_TYPE):
             reply_markup=InlineKeyboardMarkup(keyboard)
         )
 
-elif data.startswith("map:"):
+    elif data.startswith("map:"):
 
     map_name = data.replace("map:", "")
 
