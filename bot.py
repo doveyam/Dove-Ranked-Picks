@@ -168,13 +168,13 @@ async def button_handler(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
     elif data.startswith("enemy:"):
 
-    enemy = data.replace("enemy:", "")
+        enemy = data.replace("enemy:", "")
 
-    if user_id in USER_DRAFTS:
+        if user_id in USER_DRAFTS:
 
-        enemies = USER_DRAFTS[user_id]["enemies"]
+            enemies = USER_DRAFTS[user_id]["enemies"]
 
-        if enemy in enemies:
+            if enemy in enemies:
 
             await query.edit_message_text(
                 f"⚠️ {enemy} уже добавлен."
