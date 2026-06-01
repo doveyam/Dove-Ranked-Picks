@@ -118,6 +118,12 @@ async def button_handler(update: Update, context: ContextTypes.DEFAULT_TYPE):
             ],
             [
                 InlineKeyboardButton(
+                    "➖ Удалить врага",
+                    callback_data="remove_enemy"
+                )
+            ],
+            [
+                InlineKeyboardButton(
                     "🧠 Получить рекомендацию",
                     callback_data="recommend"
                 )
