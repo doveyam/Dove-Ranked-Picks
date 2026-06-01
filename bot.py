@@ -140,7 +140,8 @@ async def button_handler(update: Update, context: ContextTypes.DEFAULT_TYPE):
             f"🗺 Карта: {map_name}\n\nВыберите действие:",
             reply_markup=InlineKeyboardMarkup(keyboard)
         )
-            elif data == "add_enemy":
+
+    elif data == "add_enemy":
 
         keyboard = []
 
@@ -309,6 +310,8 @@ async def button_handler(update: Update, context: ContextTypes.DEFAULT_TYPE):
             f"🗺 Карта: {map_name}\n\nВыберите действие:",
             reply_markup=InlineKeyboardMarkup(keyboard)
         )
+
+
 def main():
 
     app = Application.builder().token(TOKEN).build()
