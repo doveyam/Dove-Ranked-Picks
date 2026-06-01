@@ -65,3 +65,38 @@ def calculate_score(
     score += get_meta_score(candidate)
 
     return score
+
+
+def get_recommendations(
+    enemy_brawlers,
+    map_data,
+    counters
+):
+
+    results = {}
+
+    for enemy in enemy_brawlers:
+
+        enemy_counters = counters.get(enemy, [])
+
+        for candidate in enemy_counters:
+
+            score = calculate_score(
+                candidate,
+                enemy,
+                counters,
+                map_data
+            )
+
+            results[candidate] = (
+                results.get(candidate, 0)
+                + score
+            )
+
+    sorted_results = sorted(
+        results.items(),
+        key=lambda x: x[1],
+        reverse=True
+    )
+
+   
