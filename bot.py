@@ -316,13 +316,14 @@ if user_id in USER_DRAFTS:
 
         map_name = draft["map"]
 
-        keyboard = [
-            [InlineKeyboardButton("➕ Добавить врага", callback_data="add_enemy")],
-            [InlineKeyboardButton("📋 Список врагов", callback_data="enemy_list")],
-            [InlineKeyboardButton("🧠 Получить рекомендацию", callback_data="recommend")],
-            [InlineKeyboardButton("🗑 Очистить", callback_data="clear_draft")],
-            [InlineKeyboardButton("🏠 Главное меню", callback_data="main_menu")]
-        ]
+keyboard = [
+    [InlineKeyboardButton("➕ Добавить врага", callback_data="add_enemy")],
+    [InlineKeyboardButton("📋 Список врагов", callback_data="enemy_list")],
+    [InlineKeyboardButton("➖ Удалить врага", callback_data="remove_enemy")],
+    [InlineKeyboardButton("🧠 Получить рекомендацию", callback_data="recommend")],
+    [InlineKeyboardButton("🗑 Очистить", callback_data="clear_draft")],
+    [InlineKeyboardButton("🏠 Главное меню", callback_data="main_menu")]
+]
 
         await query.edit_message_text(
             f"🗺 Карта: {map_name}\n\nВыберите действие:",
