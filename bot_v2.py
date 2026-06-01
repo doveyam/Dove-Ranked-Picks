@@ -309,3 +309,15 @@ async def button_handler(update: Update, context: ContextTypes.DEFAULT_TYPE):
             f"🗺 Карта: {map_name}\n\nВыберите действие:",
             reply_markup=InlineKeyboardMarkup(keyboard)
         )
+def main():
+
+    app = Application.builder().token(TOKEN).build()
+
+    app.add_handler(CommandHandler("start", start))
+    app.add_handler(CallbackQueryHandler(button_handler))
+
+    app.run_polling()
+
+
+if __name__ == "__main__":
+    main()
