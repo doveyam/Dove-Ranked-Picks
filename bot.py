@@ -141,11 +141,11 @@ async def button_handler(update: Update, context: ContextTypes.DEFAULT_TYPE):
             reply_markup=InlineKeyboardMarkup(keyboard)
         )
 
-elif data == "add_enemy":
+    elif data == "add_enemy":
 
-    keyboard = []
+        keyboard = []
 
-    for brawler in sorted(COUNTERS.keys()):
+        for brawler in sorted(COUNTERS.keys()):
 
         keyboard.append([
             InlineKeyboardButton(
@@ -166,7 +166,7 @@ elif data == "add_enemy":
         reply_markup=InlineKeyboardMarkup(keyboard)
     )
 
-elif data.startswith("enemy:"):
+    elif data.startswith("enemy:"):
 
     enemy = data.replace("enemy:", "")
 
