@@ -143,7 +143,7 @@ async def button_handler(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
     elif data == "add_enemy":
 
-    keyboard = []
+        keyboard = []
 
     for brawler in sorted(COUNTERS.keys()):
 
