@@ -145,26 +145,26 @@ async def button_handler(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
         keyboard = []
 
-    for brawler in sorted(COUNTERS.keys()):
+        for brawler in sorted(COUNTERS.keys()):
+
+            keyboard.append([
+                InlineKeyboardButton(
+                    brawler,
+                    callback_data=f"enemy:{brawler}"
+                    )
+            ])
 
         keyboard.append([
             InlineKeyboardButton(
-                brawler,
-                callback_data=f"enemy:{brawler}"
+                "⬅️ Назад",
+                callback_data="back_to_draft"
             )
         ])
 
-    keyboard.append([
-        InlineKeyboardButton(
-            "⬅️ Назад",
-            callback_data="back_to_draft"
+        await query.edit_message_text(
+            "👥 Выберите вражеского бойца:",
+            reply_markup=InlineKeyboardMarkup(keyboard)
         )
-    ])
-
-    await query.edit_message_text(
-        "👥 Выберите вражеского бойца:",
-        reply_markup=InlineKeyboardMarkup(keyboard)
-    )
 
     elif data.startswith("enemy:"):
 
