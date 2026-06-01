@@ -1,8 +1,4 @@
-from telegram import (
-    Update,
-    InlineKeyboardButton,
-    InlineKeyboardMarkup
-)
+from telegram import Update, InlineKeyboardButton, InlineKeyboardMarkup
 from telegram.ext import (
     Application,
     CommandHandler,
@@ -11,7 +7,6 @@ from telegram.ext import (
 )
 import os
 
-from data import MODES
 from data import MODES
 
 TOKEN = os.getenv("BOT_TOKEN")
@@ -65,30 +60,10 @@ async def button_handler(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
     elif data.startswith("map:"):
 
-    map_name = data.replace("map:", "")
-
-    if map_name in MAPS:
-
-        m = MAPS[map_name]
-
-        text = (
-            f"🗺 {map_name}\n\n"
-            f"🚫 Приоритетные баны\n"
-            + "\n".join([f"• {x}" for x in m["priority_bans"]])
-            + "\n\n⚠️ Альтернативные баны\n"
-            + "\n".join([f"• {x}" for x in m["alt_bans"]])
-            + "\n\n✅ Ферст пики\n"
-            + "\n".join([f"• {x}" for x in m["first_picks"]])
-            + "\n\n🎯 Ласт пики\n"
-            + "\n".join([f"• {x}" for x in m["last_picks"]])
-        )
-
-        await query.edit_message_text(text)
-
-    else:
+        map_name = data.replace("map:", "")
 
         await query.edit_message_text(
-            f"🗺 {map_name}\n\nДанные для карты ещё не добавлены."
+            f"🗺 Карта: {map_name}\n\nДанные по карте пока не добавлены."
         )
 
 
