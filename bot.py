@@ -13,6 +13,7 @@ from maps import MAPS
 from counters import COUNTERS
 from storage import USER_DRAFTS
 from draft_engine import get_recommendations
+from translations import MAP_TRANSLATIONS
 
 TOKEN = os.getenv("BOT_TOKEN")
 
