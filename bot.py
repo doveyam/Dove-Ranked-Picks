@@ -12,6 +12,7 @@ from telegram.ext import (
 import os
 
 from data import MODES
+from data import MODES
 
 TOKEN = os.getenv("BOT_TOKEN")
 
