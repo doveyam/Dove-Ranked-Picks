@@ -88,6 +88,11 @@ def get_recommendations(
             if candidate in enemy_counters:
                 score += 100
 
+            candidate_counters = counters.get(candidate, [])
+
+            if enemy in candidate_counters:
+                score -= 75
+
         score += get_map_score(
             candidate,
             map_data
@@ -100,10 +105,6 @@ def get_recommendations(
         if score > 0:
 
             results[candidate] = score
-
-            print(
-                f"{candidate} | SCORE={score}"
-            )
 
     sorted_results = sorted(
         results.items(),
