@@ -75,38 +75,35 @@ def get_recommendations(
 
     results = {}
 
-    for enemy in enemy_brawlers:
+    all_brawlers = list(counters.keys())
 
-        enemy_counters = counters.get(enemy, [])
-        
-        print(f"ENEMY={enemy}")
-        print(f"COUNTERS={enemy_counters}")
+    for candidate in all_brawlers:
 
-        for candidate in enemy_counters:
+        score = 0
 
-            score = calculate_score(
-                candidate,
-                enemy,
-                counters,
-                map_data
-            )
+        for enemy in enemy_brawlers:
+
+            enemy_counters = counters.get(enemy, [])
+
+            if candidate in enemy_counters:
+                score += 100
+
+        score += get_map_score(
+            candidate,
+            map_data
+        )
+
+        score += get_meta_score(
+            candidate
+        )
+
+        if score > 0:
+
+            results[candidate] = score
 
             print(
-                f"CANDIDATE={candidate}"
+                f"{candidate} | SCORE={score}"
             )
-            print(
-                f"ENEMY={enemy}"
-            )
-            print(
-                f"MAP={get_map_score(candidate, map_data)}"
-            )
-            print(
-                f"META={get_meta_score(candidate)}"
-            )
-            print(
-                f"TOTAL={score}"
-            )
-            print("------")
 
     sorted_results = sorted(
         results.items(),
