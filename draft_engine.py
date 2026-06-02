@@ -89,13 +89,21 @@ def get_recommendations(
             )
 
             print(
-                f"CANDIDATE={candidate} | ENEMY={enemy} | SCORE={score}"
+                f"CANDIDATE={candidate}"
             )
-
-            results[candidate] = (
-                results.get(candidate, 0)
-                + score
+            print(
+                f"ENEMY={enemy}"
             )
+            print(
+                f"MAP={get_map_score(candidate, map_data)}"
+            )
+            print(
+                f"META={get_meta_score(candidate)}"
+            )
+            print(
+                f"TOTAL={score}"
+            )
+            print("------")
 
     sorted_results = sorted(
         results.items(),
