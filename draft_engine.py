@@ -78,6 +78,9 @@ def get_recommendations(
     for enemy in enemy_brawlers:
 
         enemy_counters = counters.get(enemy, [])
+        
+        print(f"ENEMY={enemy}")
+        print(f"COUNTERS={enemy_counters}")
 
         for candidate in enemy_counters:
 
