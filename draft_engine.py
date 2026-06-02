@@ -88,6 +88,9 @@ def get_recommendations(
                 map_data
             )
 
+    print(
+        f"CANDIDATE={candidate} | ENEMY={enemy} | SCORE={score}"
+    )
             results[candidate] = (
                 results.get(candidate, 0)
                 + score
